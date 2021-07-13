@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="dummy-test-suite.xml" />
+	<munit:test name="dummy-test-suite-dummyFlowTest" doc:id="3a410679-5e2a-4e9f-b2c2-b48b1fe9bc0f" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyFlow" doc:id="2c2d4ad9-f918-4c91-bfd4-0dcd6e8536c1" name="dummyFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="0a251830-a3af-49bc-aede-20d15e9fb629" actual="#[payload]" expected='#["Hello Dummy"]' message="#[&quot;payload doesn't matches with expected&quot;]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummy-test-suite-dummyFlowTest1" doc:id="f6d44d20-58d1-4e6a-8c66-742f1462851f" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyFlow" doc:id="f703ac27-be75-4736-9d67-982927bf1dc0" name="dummyFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="2bb0b070-1ab2-417b-b27f-dbe227822db5" message="#[&quot;Payload doesn't start with Hello&quot;]" expression="#[payload]" is="#[MunitTools::startsWith('Hello')]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
